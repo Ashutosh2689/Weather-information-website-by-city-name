@@ -1,0 +1,43 @@
+body{
+    margin:0px;
+}
+.div-logo{
+    height: 100%;
+    text-align: center;
+    margin: 10px;
+    float: left;
+}
+.logo-text{
+    display:block;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: medium;
+    color:black;
+}
+.weather-header{
+    position: absolute;
+    left: 0px;
+    right:0px;
+    height: 150px;
+    width: 100%; 
+    background-color: #9abed3;
+ }
+ .input-city{
+        width: 200px;
+        margin:0 auto;
+        position:calc(center);
+ }
+.details{
+    text-align: center;
+    border: 3px solid #73AD21;
+    position: absolute;
+    top: 180px;
+    width: 100%;
+}
+.details output{
+    padding: 10px;
+    margin: 10px;
+    border: 2px dotted darkblue;
+    
+}
+ 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+        <title>Wheather Information</title>
+        <link rel="stylesheet" type="text/css" href="weather.css">
+    </head>
+    <body>
+        <header class="weather-header">
+          <div class="div-logo">
+            <img src="download.png" width="110px" height="100px">
+            <span class="logo-text">Weather Information</span>
+          </div>
+          <div class="input-city">
+            <input id = "city" placeholder="Enter the City Name" style ="width: 230px; height: 40px;color: aquamarine;"><br><br>
+            <button onclick="show_temp()" style="width: 100px;height: 30px;color:gray">Submit</button>
+          </div>
+        </header>
+
+       <div class="details">
+          <p style="font-size: large;">Temperature : <output id ="output" style="color: brown;"></output> </p><br>
+          <p style="font-size: large;">Wind Direction :  <output id ="output1" style="color: brown;"></output> </p><br>
+          <p style="font-size: large;">Time Zone :  <output id ="output2" style="color: brown;"></output></p><br>
+          <p style="font-size: large;" >Sunrise :  <output id ="output3" style="color: brown;"></output></p><br>
+          <p style="font-size: large;">Sunset :  <output id ="output4" style="color: brown;"></output></p><br>
+          <p style="font-size: large;">Description :  <output id ="output5" style="color: brown;"></output></p><br>
+          <p style="font-size: large;">Current Date and Time :  <output id ="output6" style="color: brown;"></output></p><br>
+          <p style="font-size: large;">Relative Humidity :  <output id ="output7" style="color: brown;"></output></p><br>
+       </div>
+      
+       <script type = "text/javascript">
+        function show_temp(){
+
+            city = document.getElementById("city").value;
+
+            httpRequest = new XMLHttpRequest();
+            url = "https://api.weatherbit.io/v2.0/current?city="+city+"&key=271f2ef62d1d49469387eccdc1305dfc";
+            httpRequest.open("GET" , url);
+            httpRequest.send();
+
+            httpRequest.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    user_data = JSON.parse(this.responseText);
+                   document.getElementById("output").innerHTML = user_data.data[0].temp+"\u00B0"+"C";
+                   document.getElementById("output1").innerHTML = user_data.data[0].wind_cdir;
+                   document.getElementById("output2").innerHTML = user_data.data[0].timezone;
+                   document.getElementById("output3").innerHTML = user_data.data[0].sunrise+"+Std GMT";
+                   document.getElementById("output4").innerHTML = user_data.data[0].sunset+"+Std GMT";
+                   document.getElementById("output5").innerHTML = user_data.data[0].weather.description;
+                   document.getElementById("output6").innerHTML = user_data.data[0].ob_time+"+Std GMT";
+                   document.getElementById("output7").innerHTML = user_data.data[0].rh+"%";
+                }
+            }
+           
+        }
+       </script>
+    </body>
+</html>
